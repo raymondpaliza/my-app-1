@@ -18,5 +18,11 @@ Kind Regards,
 Raymond Paliza''', cc: 'raymond.paliza@sprint.com', from: '', replyTo: '', subject: 'Jenkins Job', to: 'raymond.paliza@gmail.com'
     
     }
+  stage ('Slack Notification'){ 
+    slackSend baseUrl: 'https://hooks.slack.com/services/', 
+    channel: '#devops', color: 'good', iconEmoji: '', 
+    message: 'Welcome to Jenkins, Slack!', 
+    teamDomain: 'DEVOPS', tokenCredentialId: 'Slack_Token', username: ''
+  }
   
 }
