@@ -14,7 +14,7 @@ node {
     withSonarQubeEnv('sonarscanner-3') 
       // requires SonarQube Scanner for Maven 3.2+
       def mvnHome =  tool name: 'maven-3', type: 'maven'
-      sh "mvn sonar:sonar
+      sh "/usr/local/bin/mvn sonar:sonar
   -Dsonar.projectKey=my-app
   -Dsonar.host.url=http://localhost:9000 
   -Dsonar.login=e3568cb870e42d1036c6523c0e13a4989f2454a7"
