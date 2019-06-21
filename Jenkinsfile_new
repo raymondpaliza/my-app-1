@@ -5,7 +5,7 @@ node {
   stage('Compile-Package'){
   //Get maven home path
   def mvnHome = tool name: 'maven-3', type: 'maven'
-    sh "${mvnHome}/usr/local/bin package"
+    sh "${mvnHome}/usr/local/bin/mvn package"
     }
     
     }
@@ -14,7 +14,7 @@ node {
     withSonarQubeEnv('sonarscanner-3') 
       // requires SonarQube Scanner for Maven 3.2+
       def mvnHome =  tool name: 'maven-3', type: 'maven'
-      sh "${mvnHome}/usr/local/bin sonar:sonar"
+      sh "${mvnHome}/usr/local/bin/mvn sonar:sonar"
     }
     
     
