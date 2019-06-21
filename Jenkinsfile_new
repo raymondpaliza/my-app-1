@@ -25,4 +25,10 @@ Raymond Paliza''', cc: 'raymond.paliza@sprint.com', from: '', replyTo: '', subje
     teamDomain: 'DEVOPS', tokenCredentialId: 'Slack_Token', username: ''
   }
   
+  stage('SonarQube analysis') {
+    withSonarQubeEnv('sonar-6') {
+      // requires SonarQube Scanner for Maven 3.2+
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+    }
+  
 }
