@@ -27,14 +27,7 @@ node {
                     message: 'SonarQube Analysis Failed!', 
                     teamDomain: 'DEVOPS', tokenCredentialId: 'Slack_Token', username: ''
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
-		else 
-			slackSend baseUrl: 'https://hooks.slack.com/services/', 
-                    channel: '#devops', 
-                    color: 'danger', 
-                    iconEmoji: '', 
-                    message: 'SonarQube Analysis Successful!', 
-                    teamDomain: 'DEVOPS', tokenCredentialId: 'Slack_Token', username: ''
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+		
               }
           }
       }    
@@ -45,18 +38,18 @@ node {
       sshagent(credentials: [''], ignoreMissing: true) {
          //sh 'cp /Users/Shared/Jenkins/Home/workspace/jenkinsfile-git-and-maven@2/target/*.war /usr/local/Cellar/tomcat/9.0.21/libexec/webapps/'
         sh 'cp /Users/Shared/Jenkins/Home/workspace/Sample-Deploy/target/*.war /usr/local/Cellar/tomcat/9.0.21/libexec/webapps/'
-        }
+        
 		{ 
     slackSend baseUrl: 'https://hooks.slack.com/services/', 
     channel: '#devops', 
     color: 'good', 
     iconEmoji: '', 
-    message: 'Your Build now deployed - check https://127.0.0.1/9090//!', 
+    message: 'Your Build now deployed - check https://127.0.0.1/9090/myweb-0.0.5/', 
     teamDomain: 'DEVOPS', tokenCredentialId: 'Slack_Token', username: ''
   
    }
 
-	
+    }	
 
      }
       
