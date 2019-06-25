@@ -31,6 +31,19 @@ node {
           }
       }    
       
+      stage ('UPLOAD Artifactory'){
+  def server = Artifactory.server('Artifactory-3')	
+  def rtMaven = Artifactory.newMavenBuild()
+  	rtMaven.resolver releaseRepo: 'maven', snapshotRepo: 'maven'
+  	rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
+  	rtMaven.tool = 'maven-3'
+  def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
+  	server.publishBuildInfo buildInfo  
+  }
+      
+      
+      
+      
       
       stage('Deploy to Tomcat'){
       
